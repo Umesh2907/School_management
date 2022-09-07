@@ -1,0 +1,18 @@
+ <div class="container mt-5">
+  <% if current_user.role == 'admin'%>
+    <h1><%= "Hello, #{current_user.first_name}(Admin)." %></h1>
+    <h2>Welcome To <strong>"School Management"</strong> Project Admin</h2>
+  <% elsif current_user.role == 'principal' %>
+    <h1><%= "Hello, #{current_user.first_name}(Principal)" %></h1>
+    <h2>Welcome To <strong>"School Management"</strong> Project Principal</h2>
+  <% elsif current_user.role == 'teacher' %>
+    <h1><%= "Hello, #{current_user.first_name}(Teacher)" %></h1>
+    <h2>Welcome To <strong>"School Management"</strong> Project Teacher</h2>
+  <% elsif current_user.role == 'student' %>
+    <h1><%= "Hello, #{current_user.first_name}(Student)" %></h1>
+    <h2>Welcome To <strong>"School Management"</strong> Project Student</h2>
+  <% else %>
+    <h1><%= "Hello, #{current_user.first_name}(User)" %></h1>
+    <h2>Welcome To <strong>"School Management"</strong> Project User</h2>
+  <% end %>
+</div>

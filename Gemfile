@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -61,3 +61,19 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+#Devise gem
+gem 'devise'
+
+# Bootstrap
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'devise-bootstrap-views', '~> 1.0'
+
+# mail confirmation
+gem "letter_opener", group: :development
+
+# user profile image
+gem 'avatar', '~> 0.2.0'
+gem 'file_validators'
