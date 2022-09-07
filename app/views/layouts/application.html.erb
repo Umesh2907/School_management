@@ -17,28 +17,22 @@
           <ul class="navbar-nav mr-auto mb-3">       
             <li class="nav-item mt-2 ml-3">
               Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to 'Edit profile', edit_user_registration_path, class:'btn' %> |
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class:'btn' %>
-            </li>
-            <li class="nav-item dropdown user-menu">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Log-In As
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
+              <%= image_tag(current_user.avatar_thumbnail, class: "rounded-circle", width: "40px", height: "40px") %>
+              <%= link_to 'Edit profile', edit_user_registration_path, class:"navbar-item btn btn-outline-secondary mr-3" %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"navbar-item btn btn-outline-danger mr-3" %>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          <%# <form class="form-inline my-2 my-lg-0"> %>
+            <%# <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> %>
+            <%# <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> %>
+          <%# </form> %>
         <% else %> 
-          <%= link_to "Sign up", new_user_registration_path %> |
-          <%= link_to "Login", new_user_session_path %>
+          <ul class="navbar-nav mr-auto mb-3">       
+            <li class="nav-item mt-2 ml-3">
+              <%= link_to "Sign up", new_user_registration_path, class:"navbar-item btn btn-outline-success mr-3" %>
+              <%= link_to "Login", new_user_session_path, class:"navbar-item btn btn-outline-warning mr-3" %>
+            </li>
+          </ul>
         <% end %>
       </div>
     </nav>
