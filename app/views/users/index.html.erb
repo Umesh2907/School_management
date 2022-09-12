@@ -1,18 +1,39 @@
  <div class="container mt-5">
-  <% if current_user.role == 'admin'%>
-    <h1><%= "Hello, #{current_user.first_name}(Admin)." %></h1>
-    <h2>Welcome To <strong>"School Management"</strong> Project Admin</h2>
-  <% elsif current_user.role == 'principal' %>
-    <h1><%= "Hello, #{current_user.first_name}(Principal)" %></h1>
-    <h2>Welcome To <strong>"School Management"</strong> Project Principal</h2>
-  <% elsif current_user.role == 'teacher' %>
-    <h1><%= "Hello, #{current_user.first_name}(Teacher)" %></h1>
-    <h2>Welcome To <strong>"School Management"</strong> Project Teacher</h2>
-  <% elsif current_user.role == 'student' %>
-    <h1><%= "Hello, #{current_user.first_name}(Student)" %></h1>
-    <h2>Welcome To <strong>"School Management"</strong> Project Student</h2>
-  <% else %>
-    <h1><%= "Hello, #{current_user.first_name}(User)" %></h1>
-    <h2>Welcome To <strong>"School Management"</strong> Project User</h2>
+  <% if current_user.role == 'student' %>
+    <div class="col-lg-3 col-md-6 mt-5 ml-auto mr-auto">
+      <h1>Students</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date Of Birth</th>
+            <th>Gender</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th>Role</th>
+            <th>Custom Attr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.email  %></td>
+              <td><%= user.first_name  %></td>
+              <td><%= user.last_name %></td>
+              <td><%= user.date_of_birth %></td>
+              <td><%= user.gender %></td>
+              <td><%= user.contact_number %></td>
+              <td><%= user.address %></td>
+              <td><%= user.role %></td>
+              <td><%= user.custom_attr  %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="form-group btn btn-warning">
+        <%= link_to t('.back'), :back %>
+      </div>
+    </div>
   <% end %>
 </div>

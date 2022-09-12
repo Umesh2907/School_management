@@ -42,6 +42,6 @@ class ClassRoomsController < ApplicationController
   end
 
   def set_school
-    @school = School.find(params[:school_id])
+    @school = School.first
   end
 end
