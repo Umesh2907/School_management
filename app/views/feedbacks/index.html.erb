@@ -1,2 +1,24 @@
-<h1>Feedbacks#index</h1>
-<p>Find me in app/views/feedbacks/index.html.erb</p>
+<div class="col-lg-3 col-md-6 mt-5 ml-auto mr-auto">
+  <h1>Feedbacks</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>grade</th>
+        <th>Feedback</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @feedbacks.each do |feedback| %>
+        <tr>
+          <td><%= feedback.title %></td>
+          <td><%= feedback.grade %></td>
+          <td><%= feedback.feedback %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="form-group btn btn-warning">
+    <%= link_to t('.back'), :back %>
+  </div>
+</div>

@@ -41,8 +41,9 @@ class SchoolsController < ApplicationController
 
     redirect_to schools_path
   end
-
+  
   private
+  
   def school_params
     params.require(:school).permit(:name, :email, :address, :contacts)
   end

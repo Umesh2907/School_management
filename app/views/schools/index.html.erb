@@ -4,18 +4,18 @@
       <h1><%=link_to school.name, school_url(school) %></h1>
       <h1 class="text-light p-3 text-center rounded bg-success">Administration Dashboard</h1>
       <h4>
-      <strong>Email ID:</strong>
-      <%= school.email %>
+        <strong>Email ID:</strong>
+        <%= school.email %>
       </h4>
 
       <h4>
-      <strong>Address:</strong>
-      <%= school.address %>
+        <strong>Address:</strong>
+        <%= school.address %>
       </h4>
 
       <h4>
-      <strong>Contact:</strong>
-      <%= school.contacts %>
+        <strong>Contact:</strong>
+        <%= school.contacts %>
       </h4>
 
       <div class="row mt-5">
@@ -23,7 +23,7 @@
         <div class="col-md-4">
           <div class="card bg-light">
             <div class="card-body text-primary text-center">
-              <h3><%= "Total Students #{User.where(role: "student").count}" %></h3>
+              <h3><%= "Total Students #{students_count}" %></h3>
             </div>
           </div>  
         </div>
@@ -31,7 +31,7 @@
         <div class="col-md-4">
           <div class="card bg-light">      
             <div class="card-body text-primary text-center">
-              <h3><%= "Total Teachers #{User.where(role: "teacher").count}" %></h3>
+              <h3><%= "Total Teachers #{teachers_count}" %></h3>
             </div>
           </div>
         </div> 
@@ -50,7 +50,7 @@
         <div class="col-md-6">
           <div class="card bg-light">
             <div class="card-body text-center">
-              <h3><%= link_to "Create Feedbacks", users_path(@users) %></h3>
+              <h3><%= link_to "Create Feedbacks", school_users_path(school) %></h3>
             </div>
           </div>  
         </div>
@@ -75,7 +75,7 @@
         <div class="col-md-3">
           <div class="card bg-light">
             <div class="card-body text-center">
-              <h3><%= link_to "Feedbacks" %></h3>
+              <h3><%= link_to "Create Feedbacks", school_users_path(school) %></h3>
             </div>
           </div>  
         </div>
@@ -83,7 +83,7 @@
         <div class="col-md-3">
           <div class="card bg-light">             
             <div class="card-body text-center">
-              <h3><%= link_to "Total Classes", school_class_rooms_path(school) %></h3>
+              <h3><%= link_to "Total Classes", school_class_rooms_path(school, @class_room) %></h3>
             </div>
           </div>
         </div> 
@@ -91,8 +91,7 @@
         <div class="col-md-3">
           <div class="card bg-light">
             <div class="card-body text-center">
-              <h3><%= link_to "Take Attendance" %></h3>
-               <%# school_class_room_lectures_path(school, @class_room), class: "text-primary"  %>
+              <h3><%= link_to "Take Attendance", new_user_attendance_path(school) %></h3>
             </div>
           </div>
         </div>

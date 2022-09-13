@@ -5,20 +5,20 @@ class FeedbacksController < ApplicationController
     end
   
     def show
-      feedbacks = @user.feedbacks.find(params[:id])
+      @feedback = @user.feedbacks.find(params[:id])
     end
   
     def new
-      feedbacks = @user.feedbacks.new
+      @feedback = @user.feedbacks.new
     end
   
     def edit
-      feedbacks = @user.feedbacks.find(params[:id])
+      @feedback = @user.feedbacks.find(params[:id])
     end
   
     def create
-      feedbacks = @user.feedbacks.create(feedback_params)
-      if feedbacks.save
+      @feedback = @user.feedbacks.create(feedback_params)
+      if @feedback.save
       redirect_to user_feedbacks_path(@user)
       else 
         render :new
@@ -26,8 +26,8 @@ class FeedbacksController < ApplicationController
     end
   
     def update
-      feedbacks = @user.feedbacks.find(params[:id])
-      if feedbacks.update(feedback_params)
+      @feedback = @user.feedbacks.find(params[:id])
+      if @feedback.update(feedback_params)
         redirect_to user_feedbacks_path(@user)
       else
         redirect_to  edit_user_feedback_path(@user)
@@ -37,11 +37,11 @@ class FeedbacksController < ApplicationController
     private
   
     def feedback_params
-      params.require(:feedback).permit(:title, :grade, :user_id)
+      params.require(:feedback).permit(:title, :grade, :feedback, :user_id)
     end
   
-    def set_classroom
-      @user = User.find_by(id: params[:user_id])
+    def set_user
+      @user = User.find(params[:user_id])
     end
   
 end

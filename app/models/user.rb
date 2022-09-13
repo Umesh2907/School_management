@@ -8,7 +8,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # serialize :custom_attr, Hash
+  serialize :custom_attr
 
   enum role: [:admin, :principal, :teacher, :student]
 

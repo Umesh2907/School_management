@@ -1,2 +1,44 @@
-<h1>Attendances#new</h1>
-<p>Find me in app/views/attendances/new.html.erb</p>
+<div class="col-lg-3 col-md-6 mt-5 ml-auto mr-auto">
+  <%= form_for @attendance, url: [@user, @attendance], local: true do |form| %>
+    <% if @attendance.errors.any? %>
+      <div id="error_explanation">
+      <h2>
+          <%= pluralize(@attendance.errors.count, "error") %> prohibited
+          this attendance from being saved:
+      </h2>
+      <ul>
+        <% @attendance.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+      </div>
+    <% end %>
+  
+    <div class="form-group">
+      <%= form.hidden_field :user_id %>
+    </div>
+
+    <div class="form-group">
+      <h3><%= form.label :Date %></h3>
+      <%= form.text_field :date, value: Date.today, class: 'form-control', readonly: true %>
+    </div>
+
+    <div class="form-group">
+      <h3><%= form.label :Day %></h3>
+      <%= form.text_field :day, value: Date.today.strftime("%A"), class: 'form-control', readonly: true %>
+    </div>
+
+    <div class="form-group">
+      <h3><%= form.label :Attendance %></h3>
+      <%= form.select :attendance, Attendance.attendances.keys %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Create Attendance", class: "btn btn-primary" %>
+    </div>
+
+    <div class="form-group btn btn-warning">
+      <%= link_to t('.back'), :back %>
+    </div>
+  <% end %>
+</div>
