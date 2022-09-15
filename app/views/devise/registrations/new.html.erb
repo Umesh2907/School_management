@@ -41,13 +41,13 @@
       <%= f.label :Gender %><br />
       <%= f.label :Male %>
       <%= f.radio_button :gender, "Male" %>
-      <%= f.label :Female, "Female" %>
+      <%= f.label :Female %>
       <%= f.radio_button :gender, "Female" %>
     </div>
 
     <div class="form-group">
       <%= f.label 'Contact Number' %>
-      <%= f.text_field :contact_number, autofocus: true, autocomplete: 'gender', class: 'form-control' %>
+      <%= f.text_field :contact_number, autofocus: true, autocomplete: 'contact_number', class: 'form-control' %>
     </div>
 
     <div class="form-group">

@@ -1,4 +1,5 @@
 class SchoolsController < ApplicationController
+  before_action :set_sidebar
   def index
     @schools = School.all
   end
@@ -43,6 +44,10 @@ class SchoolsController < ApplicationController
   end
   
   private
+
+  def set_sidebar
+    @show_sidebar = true
+  end
   
   def school_params
     params.require(:school).permit(:name, :email, :address, :contacts)

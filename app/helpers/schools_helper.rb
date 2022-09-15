@@ -7,7 +7,8 @@ module SchoolsHelper
     User.where(role: "teacher").count
   end
 
-  def find_user
-    @user = User.find_by(id: params[:user_id])
+  def find_id
+    @school = School.first
+    @user = User.find(params[:id])    
   end
 end

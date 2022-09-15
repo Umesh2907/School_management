@@ -1,22 +1,8 @@
  <div class="container mt-5">
   <% if current_user.role == 'admin' || current_user.role == 'principal'%>
     <% @schools.each do |school| %>
-      <h1><%=link_to school.name, school_url(school) %></h1>
+      <h1><%=link_to school.name, school_url(school.id), class: "color" %></h1>
       <h1 class="text-light p-3 text-center rounded bg-success">Administration Dashboard</h1>
-      <h4>
-        <strong>Email ID:</strong>
-        <%= school.email %>
-      </h4>
-
-      <h4>
-        <strong>Address:</strong>
-        <%= school.address %>
-      </h4>
-
-      <h4>
-        <strong>Contact:</strong>
-        <%= school.contacts %>
-      </h4>
 
       <div class="row mt-5">
 
@@ -39,7 +25,7 @@
         <div class="col-md-4">
           <div class="card bg-light">
             <div class="card-body text-primary text-center">
-              <h3><%= link_to "Create Classes", new_school_class_room_path(school) %></h3>
+              <h3><%= link_to "Create Classes", new_school_class_room_path(school.id) %></h3>
             </div>
           </div>
         </div>
@@ -50,7 +36,7 @@
         <div class="col-md-6">
           <div class="card bg-light">
             <div class="card-body text-center">
-              <h3><%= link_to "Create Feedbacks", school_users_path(school) %></h3>
+              <h3><%= link_to "Create Feedbacks", school_users_path(school.id) %></h3>
             </div>
           </div>  
         </div>
@@ -58,7 +44,7 @@
         <div class="col-md-6">
           <div class="card bg-light">             
             <div class="card-body text-center">
-              <h3><%= link_to "Total Classes", school_class_rooms_path(school, @class_room) %></h3>
+              <h3><%= link_to "Total Classes", school_class_rooms_path(school.id) %></h3>
             </div>
           </div>
         </div> 
@@ -72,44 +58,48 @@
 
       <div class="row mt-5">
 
-        <div class="col-md-3">
+        <div class="col-md-6">
           <div class="card bg-light">
             <div class="card-body text-center">
-              <h3><%= link_to "Create Feedbacks", school_users_path(school) %></h3>
+              <h3><%= link_to "Attendance & Feedbacks", school_users_path(school.id) %></h3>
             </div>
           </div>  
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-6">
           <div class="card bg-light">             
             <div class="card-body text-center">
-              <h3><%= link_to "Total Classes", school_class_rooms_path(school, @class_room) %></h3>
+              <h3><%= link_to "Total Classes", school_class_rooms_path(school.id) %></h3>
             </div>
           </div>
         </div> 
-
-        <div class="col-md-3">
-          <div class="card bg-light">
-            <div class="card-body text-center">
-              <h3><%= link_to "Take Attendance", new_user_attendance_path(school) %></h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="card bg-light">
-            <div class="card-body text-center">
-              <h3><%= link_to "Total Lectures" %></h3>
-               <%# school_class_room_lectures_path(school, @class_room), class: "text-primary"  %>
-            </div>
-          </div>
-        </div>
 
       </div>
     <% end %>
   <% elsif current_user.role == 'student' %>
     <h1><%= "Hello, #{current_user.first_name}(Student)" %></h1>
     <h1 class="text-light p-3 text-center rounded bg-warning">Students Dashboard</h1>
+    
+    <div class="row mt-5">
+
+        <div class="col-md-6">
+          <div class="card bg-light">
+            <div class="card-body text-center">
+              <h3><%= link_to "My Attendance" %></h3>
+            </div>
+          </div>  
+        </div>
+
+        <div class="col-md-6">
+          <div class="card bg-light">             
+            <div class="card-body text-center">
+              <h3><%= link_to "Total Classes", school_class_rooms_path(School.first.id) %></h3>
+            </div>
+          </div>
+        </div> 
+
+      </div>
+
   <% else %>
     <h1><%= "Hello, #{current_user.first_name}(User)" %></h1>
     <h2>Welcome To <strong>"School Management"</strong> Project User</h2>

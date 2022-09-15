@@ -1,7 +1,7 @@
 class ClassRoomsController < ApplicationController
   before_action :set_school
   def index
-    @class_rooms = @school.class_rooms.all
+    @class_rooms = @school.class_rooms
   end
 
   def show

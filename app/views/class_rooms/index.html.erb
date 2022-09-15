@@ -9,9 +9,12 @@
     <tbody>
       <% @class_rooms.each do |class_room| %>
         <tr>
-          <td><%= link_to class_room.standard, school_class_room_path(@school, class_room) %></td>
+          <td><h3><%= link_to class_room.standard, school_class_room_path(@school, class_room) %></h3></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <div class="form-group btn btn-warning">
+    <%= link_to t('.back'), :back %>
+  </div>
 </div>

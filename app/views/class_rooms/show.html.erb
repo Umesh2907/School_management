@@ -6,10 +6,15 @@
   <div>
     <h4>This Is <strong><%= @class_room.standard %> Standard</strong> of Backbencher Technologies School Indore.</h4>
   </div>
-  <div class="form-group btn btn-warning">
-    <%= link_to "Create Lectures", new_class_room_lecture_path(@class_room) %>
-  </div>
-  <div class="form-group btn btn-warning">
-    <%= link_to "Total Lectures", class_room_lectures_path(@class_room) %>
-  </div>
+  <% if current_user.role == 'admin' || current_user.role == 'pricipal' %>
+    <div class="form-group btn btn-warning">
+      <%= link_to "Class Students", school_users_path(@school) %>
+    </div>
+    <div class="form-group btn btn-warning">
+      <%= link_to "Create Lectures", new_class_room_lecture_path(@class_room) %>
+    </div>
+    <div class="form-group btn btn-warning">
+      <%= link_to "Total Lectures", class_room_lectures_path(@class_room) %>
+    </div>
+  <% end %>
 </div>
