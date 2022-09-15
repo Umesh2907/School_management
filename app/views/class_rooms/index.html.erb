@@ -1,0 +1,20 @@
+<div class="col-lg-3 col-md-6 mt-5 ml-auto mr-auto">
+  <h1>Class Room's list</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>All Standard's</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @class_rooms.each do |class_room| %>
+        <tr>
+          <td><h3><%= link_to class_room.standard, school_class_room_path(@school, class_room) %></h3></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="form-group btn btn-warning">
+    <%= link_to t('.back'), :back %>
+  </div>
+</div>

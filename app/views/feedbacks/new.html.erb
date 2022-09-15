@@ -1,0 +1,44 @@
+<div class="col-lg-3 col-md-6 mt-5 ml-auto mr-auto">
+  <%= form_for @feedback, url: [@user, @feedback], local: true do |form| %>
+    <% if @feedback.errors.any? %>
+      <div id="error_explanation">
+      <h2>
+          <%= pluralize(@feedback.errors.count, "error") %> prohibited
+          this feedback from being saved:
+      </h2>
+      <ul>
+        <% @feedback.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+      </div>
+    <% end %>
+  
+    <div class="form-group">
+      <%= form.hidden_field :user_id %>
+    </div>
+
+    <div class="form-group">
+      <h3><%= form.label :Title %></h3>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <h3><%= form.label :Grade %></h3>
+      <%= form.text_field :grade, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <h3><%= form.label :Feedback %></h3>
+      <%= form.select :feedback, Feedback.feedbacks.keys %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit "Create FeedBack", class: "btn btn-primary" %>
+    </div>
+
+    <div class="form-group btn btn-warning">
+      <%= link_to t('.back'), :back %>
+    </div>
+  <% end %>
+</div>
