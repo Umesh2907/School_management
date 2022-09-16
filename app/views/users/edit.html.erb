@@ -1,0 +1,73 @@
+<div class="col-lg-3 col-md-6 mt-5 ml-auto mr-auto">
+
+  <%= form_for(@user) do |f| %>
+
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image, autofocus: true, autocomplete: 'image', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'First Name' %>
+      <%= f.text_field :first_name, autofocus: true, autocomplete: 'firt name', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Last Name' %>
+      <%= f.text_field :last_name, autofocus: true, autocomplete: 'last name', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Date Of Birth' %>
+      <%= f.date_field :date_of_birth, autofocus: true, autocomplete: 'date of birth', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :Gender %><br />
+      <%= f.label :Male %>
+      <%= f.radio_button :gender, "Male" %>
+      <%= f.label :Female %>
+      <%= f.radio_button :gender, "Female" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Contact Number' %>
+      <%= f.text_field :contact_number, autofocus: true, autocomplete: 'gender', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Address' %>
+      <%= f.text_field :address, autofocus: true, autocomplete: 'address', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
+
+      <small class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></small>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
+      <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit 'Update', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+
+  <%= link_to t('.back'), :back %>
+</div>

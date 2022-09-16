@@ -1,0 +1,20 @@
+<nav class="col-md-2 d-none d-md-block sidebar">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item mt-3 mb-3">
+        <%= link_to 'Home', root_path, class: "color" %>
+      </li>
+      <li class="nav-item mb-3">
+        <%= link_to 'About', school_path(School.first.id), class: "color" %>        
+      </li>
+      <% if current_user.role == 'admin' || current_user.role == 'pricipal' %>  
+        <li class="nav-item mb-3">
+          <%= link_to 'Students list', school_users_path(School.first.id), class: "color" %>
+        </li>
+        <li class="nav-item mb-3">
+          <%= link_to 'More', edit_school_path(School.first.id), class: "color" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
