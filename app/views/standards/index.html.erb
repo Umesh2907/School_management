@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <h1>Class Room's list</h1>
+  <table class="table w-25">
+    <thead>
+      <tr>
+        <th>All Standard's</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @standards.each do |standard| %>
+        <tr>
+          <td><h3><%= link_to standard.class_room, school_standard_path(@school.id, standard.id) %></h3></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="form-group btn btn-warning">
+    <%= link_to 'Back', root_path %>
+  </div>
+</div>

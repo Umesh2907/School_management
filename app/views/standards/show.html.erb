@@ -1,0 +1,15 @@
+<div class="mt-2 ml-3" >
+  <%= link_to 'Edit Standard', edit_school_standard_path(@school), class:"btn btn-primary" %> |
+  <%= link_to 'Back', school_standards_path(@school), class:"btn btn-primary" %>
+</div>
+<div class="container mt-5">
+  <div>
+    <h4>This Is <strong><%= @standard.class_room %> Standard</strong> of Backbencher Technologies School Indore.</h4>
+  </div>
+  <% if current_user.role == 'admin' || current_user.role == 'pricipal' %>
+    <h2>Class Students</h2>
+    <% if @standard.class_room %>
+      <%= render 'users/students', users: students_list %>
+    <% end %>
+  <% end %>
+</div>
