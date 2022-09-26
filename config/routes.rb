@@ -3,16 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :schools do
-    resources :class_rooms
+    resources :standards
     resources :users
+    resources :teachers
   end
-  resources :users do
-    resources :attendances
-    resources :feedbacks
-  end
-  resources :class_rooms do
-    resources :lectures
-  end
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

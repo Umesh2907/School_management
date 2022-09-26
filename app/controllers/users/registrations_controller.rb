@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   before_action :set_school
 
@@ -16,8 +16,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @user = @school.users.create(user_params)
-    redirect_to root_path
+    @user = User.new(user_params)
+    if @user.save
+      @user.set_standard_and_roll_no(user_params[:student_standard], user_params[:roll_no])
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   # GET /resource/edit
@@ -29,6 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     @user = @school.users.find(params[:id])
     if @user.update(user_params)
+      @user.set_standard_and_roll_no(user_params[:student_standard], user_params[:roll_no])
       redirect_to school_users_path
     else
       render 'edit'
@@ -56,17 +62,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def user_params
-    params.require(:user).permit(:email, :school_id, :first_name, :last_name, :date_of_birth, :gender, :contact_number, :address, :role, :custom_attr, :password, :password_confirmation)
+    params.require(:user).permit(:email, :school_id, :first_name, :last_name, :date_of_birth, :gender, :contact_number, :address, :role, :password, :password_confirmation, :student_standard, :roll_no, :custom_attr)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:school_id, :first_name, :last_name, :date_of_birth, :gender, :contact_number, :address, :role, :custom_attr])
-  end
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:school_id, :first_name, :last_name, :date_of_birth, :gender, :contact_number, :address, :role, :standard, :roll_no])
+  # end
 
   # # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :date_of_birth, :gender, :contact_number, :address])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :school_id, :first_name, :last_name, :date_of_birth, :gender, :contact_number, :address, :role, :student_standard, :roll_no, :custom_attr, :current_password])
   end
 
   # The path used after sign up.

@@ -11,7 +11,7 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #495057">
-      <h3 class="text-light">School</h3>
+      <h3 class="text-light">Backbencher School</h3>
       <% if user_signed_in? %>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mb-3">       
@@ -19,15 +19,11 @@
               Logged in as <strong><%= current_user.email %></strong>.
               <%= image_tag(current_user.avatar_thumbnail, class: "rounded-circle", width: "40px", height: "40px") %>
               <%= link_to 'Edit profile', edit_user_registration_path, class:"navbar-item btn btn-secondary ml-3 mr-3" %>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"navbar-item btn btn-danger mr-3" %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"navbar-item btn btn-dark mr-3" %>
             </li>
           </ul>
-          <%# <form class="form-inline my-2 my-lg-0"> %>
-            <%# <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> %>
-            <%# <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> %>
-          <%# </form> %>
         <% else %> 
-          <ul class="navbar-nav mr-auto mb-3">       
+          <ul class="navbar-nav mr-auto mb-3">
             <li class="nav-item mt-2 ml-3">
               <%= link_to "Sign up", new_user_registration_path, class:"navbar-item btn btn-outline-success mr-3" %>
               <%= link_to "Login", new_user_session_path, class:"navbar-item btn btn-outline-warning mr-3" %>
@@ -36,25 +32,23 @@
         <% end %>
       </div>
     </nav>
-      <% if user_signed_in? %>  
-        <div class="row">
-          <%= render "layouts/sidebar" %>
-         <div class="col-10">
+    <% if user_signed_in? %>  
+      <div class="row">
+        <%= render "layouts/sidebar" %>
+        <div class="col-10">
           <%= yield %>
           <div class="mt-5">
             <p class="notice text-center text-success"><%= notice %></p>
             <p class="alert text-center text-danger"><%= alert %></p>
           </div>
-         </div>
         </div>
-        <% else %>
-          <main role="main" class="col-md-9 ml-sm-auto col-lg-12 pt-3 px-4 mt-3">
-            <%= yield %>
+      </div>
+    <% else %>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-12 pt-3 px-4 mt-3">
+        <%= yield %>
         <p class="notice text-center text-success"><%= notice %></p>
         <p class="alert text-center text-danger"><%= alert %></p>
-          </main>  
-      <% end %>
-      <div>
-      </div>
+      </main>  
+    <% end %>
   </body>
 </html>
